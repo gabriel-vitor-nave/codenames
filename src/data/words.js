@@ -1,0 +1,23 @@
+export const TIC_WORDS = [
+    "Inteligência Artificial", "Blockchain", "Big Data", "Computação em Nuvem", "IoT", "Tecnologia 5G",
+    "Cibersegurança", "Realidade Virtual", "Realidade Aumentada", "Algoritmo", "Machine Learning",
+    "Deep Learning", "Processamento de Linguagem", "Criptografia", "Biometria", "Nanotecnologia",
+    "Biotecnologia", "Robótica", "Automação", "Edge Computing", "Computação Quântica", "Metaverso",
+    "NFTs", "Smart Cities", "Telemedicina", "E-commerce", "SaaS", "PaaS", "IaaS", "API", "DevOps",
+    "Metodologia Agile", "Scrum", "Kanban", "UX Design", "UI Design", "Desenvolvimento Front-end",
+    "Desenvolvimento Back-end", "Full-stack", "Banco de Dados", "SQL", "NoSQL", "React", "Angular",
+    "Vue.js", "Node.js", "Docker", "Kubernetes", "Git", "GitHub", "Linux", "Android", "iOS", "Wi-Fi",
+    "Bluetooth", "GPS", "Fibra Óptica", "Comunicação por Satélite", "Streaming", "Mídias Sociais",
+    "SEO", "Marketing Digital", "Fintech", "Edtech", "Healthtech", "Agritech", "Insurtech",
+    "Proptech", "Legaltech", "Govtech", "Deep Tech", "Green Tech", "Space Tech", "Food Tech",
+    "Fashion Tech", "Travel Tech", "Music Tech", "Sport Tech", "Gaming", "Esports", "Digital Twin",
+    "Smart Home", "Wearables", "Veículos Autônomos", "Drones", "Impressão 3D", "Li-Fi", "Rede Mesh",
+    "Virtualização", "Microserviços", "Serverless", "Sistemas Ciber-físicos", "Tecnologia Háptica",
+    "Computação Neuromórfica", "Interface Cérebro-Máquina", "Biologia Sintética", "CRISPR",
+    "Edição Genética", "mRNA", "Captura de Carbono", "Energia de Fusão", "Zero Trust", "MFA",
+    "SSO", "Dark Web", "VPN", "Firewall", "Phishing", "Ransomware", "DDoS", "Ciência de Dados",
+    "Mineração de Dados", "Visualização de Dados", "Power BI", "Tableau", "Excel", "Apache Spark",
+    "Hadoop", "Kafka", "Redis", "Elasticsearch", "MongoDB", "PostgreSQL", "MySQL", "Oracle",
+    "AWS", "Azure", "Google Cloud", "Firebase", "Supabase", "GraphQL", "REST API", "JSON",
+    "XML", "YAML", "Markdown"
+];
