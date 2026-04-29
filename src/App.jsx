@@ -14,14 +14,16 @@ const TYPES = {
 
 function App() {
   const [screen, setScreen] = useState('setup');
-  const [teamRed, setTeamRed] = useState('Equipe Vermelha');
-  const [teamBlue, setTeamBlue] = useState('Equipe Azul');
+  const [teamRed, setTeamRed] = useState('TIME 1');
+  const [teamBlue, setTeamBlue] = useState('TIME 2');
   const [gameData, setGameData] = useState({
     words: [],
     currentTurn: TYPES.RED,
     scores: { [TYPES.RED]: 5, [TYPES.BLUE]: 4 },
     hint: '',
-    hintCount: 0
+    hintCount: 0,
+    winner: null,
+    isGameOver: false
   });
 
   const shuffle = (array) => {
@@ -53,8 +55,11 @@ function App() {
       currentTurn: TYPES.RED,
       scores: { [TYPES.RED]: 5, [TYPES.BLUE]: 4 },
       hint: '',
-      hintCount: 0
+      hintCount: 0,
+      winner: null,
+      isGameOver: false
     });
+    document.body.className = '';
   };
 
   useEffect(() => {
@@ -62,14 +67,14 @@ function App() {
   }, []);
 
   const startGame = (name1, name2) => {
-    setTeamRed(name1);
-    setTeamBlue(name2);
+    setTeamRed(name1 || 'TIME 1');
+    setTeamBlue(name2 || 'TIME 2');
     setScreen('game');
   };
 
   const handleEndGame = (winner) => {
     setScreen('ending');
-    setGameData(prev => ({ ...prev, winner }));
+    setGameData(prev => ({ ...prev, winner, isGameOver: true }));
   };
 
   const resetGame = () => {
