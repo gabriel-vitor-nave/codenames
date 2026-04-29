@@ -92,5 +92,6 @@ export const TIC_WORDS = [
     "amigo",
     "empresa",
     "banco",
+    "professor"
     "compras"
 ];
