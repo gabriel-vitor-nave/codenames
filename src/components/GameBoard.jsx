@@ -235,7 +235,7 @@ function GameBoard({ gameData, setGameData, teamRed, teamBlue, onEnd, onReset })
                 <svg viewBox="0 0 24 24" height="100%" fill="white"><path d="M12,2A5,5 0 0,1 17,7A5,5 0 0,1 12,12A5,5 0 0,1 7,7A5,5 0 0,1 12,2M12,14C15.31,14 20,15.67 20,19V22H4V19C4,15.67 8.69,14 12,14Z"/></svg>
               </div>
               <h1 style={{ color: 'white', fontSize: '4rem', fontFamily: 'var(--font-alt)', textTransform: 'uppercase', letterSpacing: '4px' }}>
-                TIME <span style={{ color: gameData.currentTurn === 'red' ? '#ff4b2b' : '#4facfe' }}>
+                Vez de <span style={{ color: gameData.currentTurn === 'red' ? '#ff4b2b' : '#4facfe' }}>
                   {gameData.currentTurn === 'red' ? teamRed : teamBlue}
                 </span>
               </h1>
