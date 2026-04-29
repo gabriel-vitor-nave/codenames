@@ -102,7 +102,7 @@ function Setup({ onStart, words }) {
                 key={i}
                 style={{
                   aspectRatio: '1.5',
-                  backgroundColor: w.type === 'black' ? '#000' : `var(--team-${w.type})` || '#9e9e9e',
+                  backgroundColor: w.type === 'black' ? '#000' : (w.type === 'neutral' ? '#9e9e9e' : `var(--team-${w.type})`),
                   borderRadius: '10px',
                   display: 'flex',
                   alignItems: 'center',

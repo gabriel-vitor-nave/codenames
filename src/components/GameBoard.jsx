@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import Card from './Card'
@@ -85,10 +85,17 @@ function GameBoard({ gameData, setGameData, teamRed, teamBlue, onEnd, onReset })
   // Show turn popup on turn change
   useEffect(() => {
     if (gameData.isGameOver) return;
-    setShowTurnPopup(true);
-    playSound('popup');
+    
+    const popupTimer = setTimeout(() => {
+      setShowTurnPopup(true);
+      playSound('popup');
+    }, 0);
+
     const timer = setTimeout(() => setShowTurnPopup(false), 2000);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(popupTimer);
+      clearTimeout(timer);
+    };
   }, [gameData.currentTurn, gameData.isGameOver]);
 
   const handleCardClick = (index) => {

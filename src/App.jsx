@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import { TIC_WORDS } from './data/words'
 import Setup from './components/Setup'
@@ -35,7 +35,7 @@ function App() {
     return newArr;
   };
 
-  const initNewGame = () => {
+  const initNewGame = useCallback(() => {
     const selectedWords = shuffle(TIC_WORDS).slice(0, 16);
     const types = shuffle([
       ...Array(5).fill(TYPES.RED),
@@ -60,11 +60,11 @@ function App() {
       isGameOver: false
     });
     document.body.className = '';
-  };
+  }, []);
 
   useEffect(() => {
     initNewGame();
-  }, []);
+  }, [initNewGame]);
 
   const startGame = (name1, name2) => {
     setTeamRed(name1 || 'TIME 1');
