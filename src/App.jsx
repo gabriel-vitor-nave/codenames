@@ -26,32 +26,62 @@ function App() {
     isGameOver: false
   });
 
-  const shuffle = (array) => {
+  const shuffle = useCallback((array) => {
     const newArr = [...array];
     for (let i = newArr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
     return newArr;
-  };
+  }, []);
 
   const initNewGame = useCallback(() => {
-    const selectedWords = shuffle(TIC_WORDS).slice(0, 16);
-    const types = shuffle([
-      ...Array(5).fill(TYPES.RED),
-      ...Array(4).fill(TYPES.BLUE),
-      ...Array(6).fill(TYPES.NEUTRAL),
-      TYPES.ASSASSIN
-    ]);
-
-    const words = selectedWords.map((text, i) => ({
-      text,
-      type: types[i],
-      revealed: false
+    // 1. Selection based on 'weight'
+    // Give each word a score: weight * random
+    const scoredWords = TIC_WORDS.map(w => ({
+      ...w,
+      score: (w.weight || 50) * Math.random()
     }));
 
+    // Sort by score descending and take top 16
+    const selectedData = scoredWords
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 16);
+
+    // 2. Assign Assassin based on 'assassinWeight'
+    // Score the selected words for the assassin role
+    const assassinScored = selectedData.map((w, idx) => ({
+      idx,
+      aScore: (w.assassinWeight || 0) * Math.random()
+    }));
+    
+    // Sort to find the best candidate for assassin
+    const assassinIdx = assassinScored.sort((a, b) => b.aScore - a.aScore)[0].idx;
+
+    // 3. Assign other types (5 Red, 4 Blue, 6 Neutral)
+    const otherTypes = shuffle([
+      ...Array(5).fill(TYPES.RED),
+      ...Array(4).fill(TYPES.BLUE),
+      ...Array(6).fill(TYPES.NEUTRAL)
+    ]);
+
+    let typePtr = 0;
+    const finalWords = selectedData.map((data, i) => {
+      let type;
+      if (i === assassinIdx) {
+        type = TYPES.ASSASSIN;
+      } else {
+        type = otherTypes[typePtr++];
+      }
+      return {
+        text: data.text,
+        type,
+        revealed: false
+      };
+    });
+
     setGameData({
-      words,
+      words: finalWords,
       currentTurn: TYPES.RED,
       scores: { [TYPES.RED]: 5, [TYPES.BLUE]: 4 },
       hint: '',
@@ -60,7 +90,7 @@ function App() {
       isGameOver: false
     });
     document.body.className = '';
-  }, []);
+  }, [shuffle]);
 
   useEffect(() => {
     initNewGame();
